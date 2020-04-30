@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Memory Blocks</string>
+    <string name="play_string">Play</string>
+    <string name="help_string">How to play</string>
+    <string name="scores_string">View Scores</string>
+    <string name="select_difficulty_string">Select Difficulty</string>
+    <string name="easy_string">Easy</string>
+    <string name="medium_string">Medium</string>
+    <string name="hard_string">Hard</string>
+    <string name="return_string">Return to Main Menu</string>
+    <string name="score_title_string">Score:</string>
+    <string name="show_pattern_string">Show Pattern Again</string>
+    <string name="enter_pattern_string">Enter Pattern</string>
+    <string name="high_score_label_string">High Score: </string>
+
+
+</resources>
