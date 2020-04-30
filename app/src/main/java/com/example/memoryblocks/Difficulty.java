@@ -1,9 +1,12 @@
 package com.example.memoryblocks;
 
 public enum Difficulty {
-    EASY(4),
-    MEDIUM(5),
-    HARD(6);
+    BEGINNER(2),
+    EASY(3),
+    NORMAL(4),
+    INTERMEDIATE(5),
+    HARD(6),
+    EXPERT(7);
 
     private final int value;
 

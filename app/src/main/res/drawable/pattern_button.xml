@@ -43,8 +43,8 @@
         android:state_pressed="false" >
         <shape>
             <gradient
-                android:startColor="#c5dee8"
-                android:endColor="#d5eaf2"
+                android:startColor="@color/colorTameBlue"
+                android:endColor="@color/colorTameBlue"
                 android:angle="270" />
             <corners
                 android:radius="7dp" />

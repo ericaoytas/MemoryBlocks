@@ -27,13 +27,13 @@ import java.util.Random;
 public class GamePlayActivity extends Activity{
 
     private int currentPatternIdx = 0; // index of pattern array to keep track of which button user is on
-    private Difficulty difficulty;
-    private int size = 4;
+    private int dims = 4;
     private int totalBlocks;
     private List<Integer> pattern;
     ArrayList<ArrayList<Button>> buttonGrid;
     TextView mScoreCounterTextView;
     TextView mHighScoreCounterTextView;
+    Button mShowPatternButton;
     private int currentScore;
     private int savedHighScore=0;
 
@@ -46,19 +46,19 @@ public class GamePlayActivity extends Activity{
         // Set References
         mScoreCounterTextView = (TextView) findViewById(R.id.score_counter_text_view);
         mHighScoreCounterTextView = (TextView) findViewById(R.id.high_score_counter_text_view);
+        mShowPatternButton = (Button) findViewById(R.id.show_pattern_button);
         currentScore = 0;
 
-        // Get Difficulty
+        // Get Dims
         Bundle data = getIntent().getExtras();
-        this.difficulty = Difficulty.EASY;
         if (data != null){
-            difficulty = (Difficulty) data.get("difficulty");
+            dims = (int) data.get("difficulty");
         }
-        size = difficulty.getDims();
-        totalBlocks = size*size;
+
+        totalBlocks = dims*dims;
 
         // Create Grid
-        createGrid(difficulty);
+        createGrid();
 
         // Create Pattern List
         pattern = new ArrayList<Integer>();
@@ -80,16 +80,16 @@ public class GamePlayActivity extends Activity{
         super.onStart();
     }
 
-    private void createGrid(Difficulty difficulty) {
+    private void createGrid() {
         float pxWidth = getDp()[0];
         int margins = 10; //<!--TODO: Change so value isn't hardcoded-->
-        buttonGrid = new ArrayList<>(size);
+        buttonGrid = new ArrayList<>(dims);
         GridLayout mMemoryBlockGridLayout = (GridLayout) findViewById(R.id.memory_block_grid_layout);
-        int buttonDims = (int) Math.floor(pxWidth / size) - margins*2;
+        int buttonDims = (int) Math.floor(pxWidth / dims) - margins*2;
 
-        for(int i=0; i < size; i++) {
+        for(int i=0; i < dims; i++) {
             buttonGrid.add(new ArrayList<Button>());
-            for (int j=0; j < size; j++) {
+            for (int j=0; j < dims; j++) {
                 Button button = new Button(getApplicationContext());
                 GridLayout.LayoutParams params= new GridLayout.LayoutParams();
                 params.rowSpec = GridLayout.spec(i+1);
@@ -126,32 +126,46 @@ public class GamePlayActivity extends Activity{
     }
 
     public void showPatternClicked(View view){
+
+        mShowPatternButton.setEnabled(false);
+
         // <!-- TODO: Make it so that show pattern can only be used a number of times -->
         Button mCurrentButton;
         final int buttonLightDelayMs = 500;
         this.currentPatternIdx = 0; // Restarts index to beginning
 
         showPattern(0, buttonLightDelayMs); // recursively shows pattern
+
     }
 
     private void showPattern(final int idx, final int delayMs) {
+
         // Reference to specific button
         currentPatternIdx = 0;
         int currentId = pattern.get(idx);
         Button mCurrentButton = (Button) findViewById(currentId);
 
         // Light up buttons
-        mCurrentButton.setBackgroundResource(R.drawable.pattern_button);
-        Handler handler = new Handler();
-        final Button finalMCurrentButton = mCurrentButton;
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                // Actions to do after time
-                finalMCurrentButton.setBackgroundResource(R.drawable.block_buttons);
-                if (idx != pattern.size()-1)
-                    showPattern(idx+1,delayMs);
-            }
-        }, delayMs);
+        try {
+            mCurrentButton.setBackgroundResource(R.drawable.pattern_button); // <--!TODO fix FATAL EXCEPTION. Saying attempt to invoke virtual method on a null object reference
+            Handler handler = new Handler();
+            final Button finalMCurrentButton = mCurrentButton;
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    // Actions to do after time
+                    finalMCurrentButton.setBackgroundResource(R.drawable.block_buttons);
+                    if (idx != pattern.size()-1)
+                        showPattern(idx+1,delayMs);
+                    mShowPatternButton.setEnabled(true);
+                }
+            }, delayMs);
+        }
+        catch (Exception e) {
+            mShowPatternButton.setEnabled(true);
+            onStart();
+        }
+
+
     }
 
     public void blockButtonClicked(View view) {
@@ -160,12 +174,13 @@ public class GamePlayActivity extends Activity{
         int userClickedButtonId = view.getId();
         int currentPatternButtonId = pattern.get(currentPatternIdx);
         int lastPatternIdx = pattern.size()-1;
-
+//        Toast toast = new Toast(this);
+//        toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0,0);
         if (currentPatternButtonId == userClickedButtonId){ // Correct
             // Check if last. If last element in the pattern list, then add new block to pattern
             // add points
             if (currentPatternIdx == lastPatternIdx){
-                Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT).show();
+//                toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT).show();
                 // New block cannot be the same as the topmost
                 pattern.add(getRandomBlock());
                 currentScore += 10;
@@ -196,10 +211,19 @@ public class GamePlayActivity extends Activity{
                 }
             }, delayMs);
             currentPatternIdx=0;
-            Toast.makeText(getApplicationContext(), "Incorrect. Restart.", Toast.LENGTH_SHORT).show();
+//            toast.makeText(getApplicationContext(), "Incorrect. Restart.", Toast.LENGTH_SHORT).show();
 
+            // Save high score
+            saveHighScore();
+
+            // Reset score
             currentScore=0;
             mScoreCounterTextView.setText(String.valueOf(currentScore));
+
+            // Reset Pattern
+            pattern.clear();
+            pattern.add(getRandomBlock());
+            this.onStart();
         }
 
     }
@@ -210,8 +234,13 @@ public class GamePlayActivity extends Activity{
 //        // store into saved high score
 //    }
 //
-//    private void saveHighScore() {
-//        // <--! TODO: Save highscore
+    private void saveHighScore() {
+        // <--! TODO: Save highscore
+        if (currentScore > savedHighScore) {
+            savedHighScore = currentScore;
+            mHighScoreCounterTextView.setText(String.valueOf(savedHighScore));
+        }
+
 //        SharedPreferences preferences = getSharedPreferences("HIGH_SCORE_PREF", Context.MODE_PRIVATE);
 //        SharedPreferences.Editor editor = preferences.edit();
 //
@@ -235,19 +264,11 @@ public class GamePlayActivity extends Activity{
 //        editor.putInt(key, savedHighScore);
 //        // save high score
 //        mHighScoreCounterTextView.setText(savedHighScore);
-//    }
+    }
 
-//    private Pair<Integer, Integer> getRandomBlock() {
-//        // get a random row
-//        Integer row = generateRandomIntIntRange(1, size);
-//        // get a random column
-//        Integer column = generateRandomIntIntRange(1, size);
-//        // return the pair
-//        return new Pair<Integer, Integer>(row, column);
-//    }
 
     private int calculateId(int row, int col) {
-        return  (row * size) + col;
+        return  (row * dims) + col;
     }
 
     private int getRandomBlock() {
@@ -257,7 +278,7 @@ public class GamePlayActivity extends Activity{
             if (lastBlock < Math.floor(totalBlocks/2.0))
                 returnBlock = generateRandomIntIntRange(lastBlock+1, totalBlocks);
             else
-                returnBlock = generateRandomIntIntRange(1, lastBlock);
+                returnBlock = generateRandomIntIntRange(1, lastBlock-1);
         }
         else
             returnBlock = generateRandomIntIntRange(1, totalBlocks);

@@ -12,6 +12,7 @@
     <string name="show_pattern_string">Show Pattern Again</string>
     <string name="enter_pattern_string">Enter Pattern</string>
     <string name="high_score_label_string">High Score: </string>
+    <string name="confirm_string">Confirm</string>
 
 
 </resources>

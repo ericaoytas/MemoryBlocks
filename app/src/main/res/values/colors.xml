@@ -3,5 +3,14 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    
+    <color name="colorBlack">#000000</color>
+    <color name="colorForestGreen">#283d29</color>
+    <color name="colorDarkGreen">#517a53</color>
+    <color name="colorMellowGreen">#84ad86</color>
+    <color name="colorPastelGreen">#c1d6c2</color>
+    <color name="colorWhite">#fffefe</color>
+    <color name="colorPeriwinkle">#cfeced</color>
+    <color name="colorMurkyWater">#2e797b</color>
+    <color name="colorTameBlue">#83ced0</color>
+
 </resources>
