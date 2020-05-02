@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPeriwinkle"
+    android:background="@color/colorMurkyWater"
     android:weightSum="100">
 
     <RelativeLayout
@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:layout_weight="8">
+        android:layout_weight="5">
 
         <ImageView
             android:contentDescription="Options"
@@ -32,14 +32,14 @@
                 android:text="@string/score_title_string"
                 android:textSize="30sp"
                 android:fontFamily="@font/montserrat_regular"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorWhite"
                 android:layout_marginEnd="10dp"/>
             <TextView
                 android:id="@+id/score_counter_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorWhite"
                 android:fontFamily="@font/montserrat_regular"
                 android:text="0" />
         </LinearLayout>
@@ -55,13 +55,13 @@
                 android:layout_height="wrap_content"
                 android:text="@string/high_score_label_string"
                 android:fontFamily="@font/montserrat_regular"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorWhite"
                 android:layout_marginEnd="10dp"/>
             <TextView
                 android:id="@+id/high_score_counter_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorWhite"
                 android:fontFamily="@font/montserrat_regular"
                 android:text="0" />
         </LinearLayout>
@@ -71,7 +71,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="72">
+        android:layout_weight="75">
         <GridLayout
             android:id="@+id/memory_block_grid_layout"
             android:layout_width="wrap_content"

@@ -18,11 +18,12 @@ public class DifficultyActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_difficulty);
         mDifficultyPicker = (NumberPicker) findViewById(R.id.difficulty_picker);
-        difficultyLevels = new String[]{"Beginner", "Easy", "Normal", "Intermediate", "Hard", "Expert"};
+        difficultyLevels = new String[]{"Beginner", "Easy", "Normal", "Medium", "Hard", "Expert"};
         mDifficultyPicker.setMinValue(0);
         mDifficultyPicker.setMaxValue(difficultyLevels.length-1);
         mDifficultyPicker.setWrapSelectorWheel(false);
         mDifficultyPicker.setDisplayedValues(difficultyLevels);
+        mDifficultyPicker.setValue(2);
     }
 
     public void goToGamePlayScreen(int dims) {
@@ -46,7 +47,7 @@ public class DifficultyActivity extends Activity {
             case "Normal":
                 dims = 4;
                 break;
-            case "Intermediate":
+            case "Medium":
                 dims = 5;
                 break;
             case "Hard":

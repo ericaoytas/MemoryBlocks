@@ -1,18 +1,50 @@
 <resources>
     <string name="app_name">Memory Blocks</string>
-    <string name="play_string">Play</string>
-    <string name="help_string">How to play</string>
+    <string name="play_string">PLAY</string>
+    <string name="help_string">HOW TO PLAY</string>
     <string name="scores_string">View Scores</string>
-    <string name="select_difficulty_string">Select Difficulty</string>
+    <string name="select_difficulty_string">SELECT DIFFICULTY</string>
     <string name="easy_string">Easy</string>
     <string name="medium_string">Medium</string>
     <string name="hard_string">Hard</string>
     <string name="return_string">Return to Main Menu</string>
     <string name="score_title_string">Score:</string>
-    <string name="show_pattern_string">Show Pattern Again</string>
+    <string name="show_pattern_string">Replay Pattern</string>
     <string name="enter_pattern_string">Enter Pattern</string>
     <string name="high_score_label_string">High Score: </string>
     <string name="confirm_string">Confirm</string>
-
+    <string name="about_help_string">About</string>
+    <string name="about_explain_help_string">
+        Memory Blocks is a fun and interactive game that challenges and
+        improves your visual memory.
+    </string>
+    <string name="selecting_the_difficulty_help_string">Selecting the difficulty</string>
+    <string name="selecting_difficulty_explain_string">
+        Before playing, you have to set the difficulty of your game. The difficulty
+        determines the size of your memory block grid.
+    </string>
+    <string name="game_play_help_string">Playing the game</string>
+    <string name="pattern_help_string">1. Observe the pattern</string>
+    <string name="pattern_explain_help_string">
+        A pattern will be automatically displayed on the memory block grid as the blocks
+        turn to the color blue. The first pattern will always start with one single,
+        random block. Every time the player mimics the pattern correctly, one random block
+        is added to the end of the pattern.
+    </string>
+    <string name="mimic_help_string">2. Mimic the pattern</string>
+    <string name="mimic_explain_string">
+        The player must try to replicate the pattern that they observed by clicking
+        on the correct blocks in the correct order. When the player pressed the correct
+        block, the block will turn blue. Once a pattern is successfully replicated, points
+        will be added to the player\'s score. If the player presses an incorrect block, the
+        score will reset to zero, and a new pattern will be played. You cannot press a block
+        while a pattern is showing.
+    </string>
+    <string name="replay_help_string">3. Replay pattern for help</string>
+    <string name="replay_explain_help_string">
+        During the game, there will be "Replay Pattern" button found at the bottom of the
+        screen. If the player needs to see the pattern again, they may click this button
+        to play it on the board again.
+    </string>
 
 </resources>

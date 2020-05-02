@@ -1,34 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPeriwinkle"
     android:weightSum="100">
 
-
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/back_button"/>
     <TextView
         android:text="@string/help_string"
+        android:textSize="24sp"
+        android:background="@color/colorMurkyWater"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/colorWhite"
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="20"
+        android:layout_weight="5"
         android:gravity="center"/>
 
-    <GridLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="55">
+        android:layout_weight="75"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="10dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/about_help_string"
+                android:textSize="20sp"
+                android:textColor="@color/colorBlack"
+                android:fontFamily="@font/montserrat_bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginBottom="10dp"
+                android:text="@string/about_explain_help_string"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/selecting_the_difficulty_help_string"
+                android:textSize="20sp"
+                android:textColor="@color/colorBlack"
+                android:fontFamily="@font/montserrat_bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginBottom="10dp"
+                android:text="@string/selecting_difficulty_explain_string"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/game_play_help_string"
+                android:textSize="20sp"
+                android:textColor="@color/colorBlack"
+                android:fontFamily="@font/montserrat_bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="@string/pattern_help_string"
+                android:fontFamily="@font/montserrat_bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginBottom="10dp"
+                android:text="@string/pattern_explain_help_string"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="@string/mimic_help_string"
+                android:fontFamily="@font/montserrat_bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginBottom="10dp"
+                android:text="@string/mimic_explain_string"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="@string/replay_help_string"
+                android:fontFamily="@font/montserrat_bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/replay_explain_help_string"/>
 
-    </GridLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="20">
+        android:layout_weight="15">
         <Button
+            android:background="@drawable/rounder_buttons"
             android:id="@+id/return_home_button"
+            android:fontFamily="@font/montserrat_regular"
             android:text="@string/return_string"
+            android:onClick="goBackToHomeScreen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
     </FrameLayout>
 
 
