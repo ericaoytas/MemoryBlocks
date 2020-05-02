@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorBlack"
             android:text="@string/show_pattern_string"
-            android:onClick="showPatternClicked"
+            android:onClick="replayPatternClicked"
             android:background="@drawable/rounder_buttons" />
     </FrameLayout>
 </LinearLayout>

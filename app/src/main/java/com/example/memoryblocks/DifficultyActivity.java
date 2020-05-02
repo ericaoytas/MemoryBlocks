@@ -27,15 +27,18 @@ public class DifficultyActivity extends Activity {
     }
 
     public void goToGamePlayScreen(int dims) {
+        // Go to GamePlayActivity
         Intent intent = new Intent(this, GamePlayActivity.class);
-        intent.putExtra("difficulty", dims);
+        intent.putExtra("difficulty", dims);        // Passes the dimensions
         startActivity(intent);
     }
 
 
     public void difficultyConfirmButtonClicked(View view) {
+        // Dimension of the memory block grid is determined by the difficulty that the user picks
         String difficulty = difficultyLevels[mDifficultyPicker.getValue()];
-        int dims=4;
+
+        int dims=4;  // Default: 4
 
         switch (difficulty){
             case "Beginner":

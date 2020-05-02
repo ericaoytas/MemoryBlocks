@@ -6,19 +6,15 @@
     android:background="@color/colorPeriwinkle"
     android:weightSum="100">
 
-    <ImageButton
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/back_button"/>
     <TextView
         android:text="@string/help_string"
         android:textSize="24sp"
+        android:layout_weight="10"
         android:background="@color/colorMurkyWater"
         android:fontFamily="@font/montserrat_bold"
         android:textColor="@color/colorWhite"
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="5"
         android:gravity="center"/>
 
     <ScrollView

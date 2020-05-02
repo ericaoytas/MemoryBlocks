@@ -12,7 +12,6 @@ public class HelpActivity extends Activity{
         setContentView(R.layout.activity_help);
     }
 
-
     public void goBackToHomeScreen(View view) {
         finish();
     }
