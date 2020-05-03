@@ -9,16 +9,20 @@
     <RelativeLayout
         android:id="@+id/game_play_header_relative_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0px"
         android:padding="10dp"
-        android:layout_weight="5">
+        android:layout_weight="15">
 
-        <ImageView
-            android:contentDescription="Options"
-            android:id="@+id/game_options_image_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"/>
+        <!-- TODO: Add pause menu -->
+<!--        <ImageView-->
+<!--            android:contentDescription="Options"-->
+<!--            android:layout_alignParentStart="true"-->
+<!--            android:id="@+id/game_options_image_view"-->
+<!--            android:padding="15dp"-->
+<!--            android:layout_width="70dp"-->
+<!--            android:layout_height="70dp"-->
+<!--            android:scaleType="fitCenter"-->
+<!--            android:src="@drawable/settings_button"/>-->
 
         <LinearLayout
             android:id="@+id/score_counter_linear_layout"
@@ -71,7 +75,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="75">
+        android:layout_weight="70">
         <GridLayout
             android:id="@+id/memory_block_grid_layout"
             android:layout_width="wrap_content"
@@ -84,7 +88,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="20"
+        android:paddingBottom="10dp"
+        android:layout_weight="15"
         android:orientation="horizontal">
         <Button
             android:id="@+id/show_pattern_button"
@@ -96,6 +101,6 @@
             android:textColor="@color/colorBlack"
             android:text="@string/show_pattern_string"
             android:onClick="replayPatternClicked"
-            android:background="@drawable/rounder_buttons" />
+            android:background="@drawable/button" />
     </FrameLayout>
 </LinearLayout>

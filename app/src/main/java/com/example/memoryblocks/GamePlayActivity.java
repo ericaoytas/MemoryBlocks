@@ -18,17 +18,17 @@ import java.util.Random;
 
 public class GamePlayActivity extends Activity {
 
-    ArrayList<Button> buttonGrid;
-    TextView mScoreCounterTextView;
-    TextView mHighScoreCounterTextView;
-    Button mReplayPatternButton;
-    GridLayout mGridLayout;
+    ArrayList<Button> buttonGrid;       // Local list of the n by n button grid
+    TextView mScoreCounterTextView;     // keeps track of current score
+    TextView mHighScoreCounterTextView; // keeps track of high score
+    Button mReplayPatternButton;        // replays the pattern
+    GridLayout mGridLayout;             // reference to the gridlayout that contains the button grid
     private int currentPatternIdx = 0;  // index of pattern array to keep track of which button user is on
     private int dims = 4;               // width and height of the memory block grid (default: 4)
     private int totalBlocks;            // total amount of blocks on a square memory block grid
     private List<Integer> pattern;      // list of ids representing the patter to be mimicked
-    private int currentScore=0;
-    private int savedHighScore=0;
+    private int currentScore=0;         // current score value of the player (default: 0)
+    private int savedHighScore=0;       // high score value saved in the system
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -43,7 +43,7 @@ public class GamePlayActivity extends Activity {
         mGridLayout = findViewById(R.id.memory_block_grid_layout);
 
         // Get dims based on difficulty
-        Bundle data = getIntent().getExtras();
+        Bundle data = getIntent().getExtras();      // Data from previous activity
         if (data != null){
             dims = (int) data.get("difficulty");
         }
@@ -59,7 +59,7 @@ public class GamePlayActivity extends Activity {
     @Override
     protected void onStart() {
         // Automatically play pattern
-        int delayMs = 1000;
+        int delayMs = 1000;                 // delay time before starting the pattern
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
@@ -77,17 +77,19 @@ public class GamePlayActivity extends Activity {
         super.onPause();
     }
 
-    /** Programmatically creates n by n blocks and adds to mGridLayout based on difficulty */
-    
+    /** Programmatically creates n by n blocks and adds to mGridLayout based on difficulty
+     *  TODO: Add sounds to buttons
+     * */
     private void createGrid() {
-        int margins = 10;
-        float pxWidth = getPxDims()[0];
+        int margins = 10;               // margin space between each button on the grid
+        float pxWidth = getPxDims()[0]; // width of the screen in pixels
+        int buttonDims = (int) Math.floor(pxWidth / dims) - margins*2; // width & height of buttons
+
         buttonGrid = new ArrayList<>(dims);
-        int buttonDims = (int) Math.floor(pxWidth / dims) - margins*2;
 
         for(int i=0; i < dims; i++) {
             for (int j=0; j < dims; j++) {
-                Button button = new Button(getApplicationContext());
+                Button button = new Button(getApplicationContext());  // Button to add in grid
                 GridLayout.LayoutParams params= new GridLayout.LayoutParams();
                 params.rowSpec = GridLayout.spec(i+1);
                 params.columnSpec = GridLayout.spec(j+1 );
@@ -113,29 +115,26 @@ public class GamePlayActivity extends Activity {
     }
 
     /** Calls replayButton() helper function, after ReplayPattern Button is clicked */
-    
     public void replayPatternClicked(View view){
-        // Disable all the buttons on the grid while pattern is showing
         disableGrid();
         mReplayPatternButton.setEnabled(false);
-        this.currentPatternIdx = 0; // Restarts index to beginning
+        this.currentPatternIdx = 0;
         final int buttonLightDelayMs = 500;
-        replayPattern(0, buttonLightDelayMs); // recursively shows pattern
+        replayPattern(0, buttonLightDelayMs);
     }
 
     /** Recursively shows the pattern on the grid*/
-
     private void replayPattern(final int idx, final int delayMs) {
         currentPatternIdx = 0;
         try {
-            int currentId = pattern.get(idx);
+            int currentId = pattern.get(idx); // id of button in the pattern to compare to
             Button mCurrentButton = buttonGrid.get(currentId-1);
             mCurrentButton.setBackgroundResource(R.drawable.pattern_button);
-            Handler handler = new Handler();
             final Button finalMCurrentButton = mCurrentButton;
+
+            Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
-                    // Actions to do after time
                     finalMCurrentButton.setBackgroundResource(R.drawable.block_buttons);
                     if (idx >= pattern.size()-1) {
                         mReplayPatternButton.setEnabled(true);
@@ -157,18 +156,17 @@ public class GamePlayActivity extends Activity {
     /** Checks if player clicked on the correct button.
      *  If correct, button turns blue, and longer pattern is shown.
      *  If incorrect, button turns red, and score is reset and a new pattern is shown. */
-
     public void blockButtonClicked(View view) {
-        final int delayMs = 500;
+        final int delayMs = 500;    // time before playing next pattern
         int userClickedButtonId = view.getId();
         int currentPatternButtonId = pattern.get(currentPatternIdx);
-        int lastPatternIdx = pattern.size()-1;
 
-        if (currentPatternButtonId-1 == userClickedButtonId){               // Correct
-            if (currentPatternIdx == lastPatternIdx){
+        if (currentPatternButtonId-1 == userClickedButtonId){               // Correct pressed
+            if (currentPatternIdx == pattern.size()-1){
+                updateScore();
+
+                // Play next pattern
                 pattern.add(getRandomBlock());
-                currentScore += 10;
-                mScoreCounterTextView.setText(String.valueOf(currentScore));
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     public void run() {
@@ -177,7 +175,7 @@ public class GamePlayActivity extends Activity {
                 }, delayMs);
             }
             currentPatternIdx++;
-        } else {                                                            // Incorrect
+        } else {                                                            // Incorrect pressed
             Button mCurrentButton = buttonGrid.get(userClickedButtonId);
             mCurrentButton.setBackgroundResource(R.drawable.block_buttons_red);
             Handler handler = new Handler();
@@ -201,7 +199,6 @@ public class GamePlayActivity extends Activity {
     }
 
     /** Loads high score that was saved on the device. */
-
     private void loadHighScore() {
         SharedPreferences preferences = getSharedPreferences("HIGH_SCORE_PREF", Context.MODE_PRIVATE);
         String key = "";
@@ -236,7 +233,6 @@ public class GamePlayActivity extends Activity {
     }
 
     /** Saves high score to device, and updates high score text. */
-
     private void saveHighScore() {
         if (currentScore > savedHighScore) {
             savedHighScore = currentScore;
@@ -274,13 +270,11 @@ public class GamePlayActivity extends Activity {
     }
 
     /** Calculates the row-major id of the grid*/
-
     private int calculateId(int row, int col) {
         return  (row * dims) + col;
     }
 
     /** Disables the memory block buttons */
-
     private void disableGrid() {
         for (int i = 0; i < totalBlocks; i++) {
             buttonGrid.get(i).setEnabled(false);
@@ -288,18 +282,15 @@ public class GamePlayActivity extends Activity {
     }
 
     /** Enables the memory block buttons */
-
     private void enableGrid() {
         for (int i = 0; i < totalBlocks; i++) {
             buttonGrid.get(i).setEnabled(true);
         }
     }
 
-
     /** Returns id of random block, that is not the same as the last in the pattern */
-
     private int getRandomBlock() {
-        int returnBlock;
+        int returnBlock;    // id of button that is randomly chosen
         if (!pattern.isEmpty()){
             int lastBlock = pattern.get(pattern.size()-1);
             if (lastBlock < Math.floor(totalBlocks/2.0))
@@ -314,8 +305,13 @@ public class GamePlayActivity extends Activity {
         return returnBlock;
     }
 
-    /** Returns pixel dimensions of the screen */
+    /** Updates current score */
+    private void updateScore() {
+        currentScore += (pattern.size() * 10);
+        mScoreCounterTextView.setText(String.valueOf(currentScore));
+    }
 
+    /** Returns pixel dimensions of the screen */
     private float[] getPxDims() {
         Display display = getWindowManager().getDefaultDisplay();
         DisplayMetrics outMetrics = new DisplayMetrics();
@@ -325,11 +321,8 @@ public class GamePlayActivity extends Activity {
     }
 
     /** Returns random int given a range */
-
     private int generateRandomIntIntRange(int min, int max) {
         Random r = new Random();
         return r.nextInt((max - min) + 1) + min;
     }
-
-
 }

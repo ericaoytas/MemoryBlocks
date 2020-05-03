@@ -26,8 +26,8 @@ public class DifficultyActivity extends Activity {
         mDifficultyPicker.setValue(2);
     }
 
+    /** Starts GamePlayActivity */
     public void goToGamePlayScreen(int dims) {
-        // Go to GamePlayActivity
         Intent intent = new Intent(this, GamePlayActivity.class);
         intent.putExtra("difficulty", dims);        // Passes the dimensions
         startActivity(intent);
@@ -62,5 +62,9 @@ public class DifficultyActivity extends Activity {
 
         }
         goToGamePlayScreen(dims);
+    }
+
+    public void goBackToHomeScreen(View view) {
+        finish();
     }
 }

@@ -1,26 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPeriwinkle"
     android:weightSum="100">
 
-    <TextView
-        android:text="@string/help_string"
-        android:textSize="24sp"
-        android:layout_weight="10"
-        android:background="@color/colorMurkyWater"
-        android:fontFamily="@font/montserrat_bold"
-        android:textColor="@color/colorWhite"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:gravity="center"/>
+        android:layout_weight="10"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="@string/help_string"
+            android:textSize="24sp"
+            android:paddingStart="15dp"
+            android:background="@color/colorMurkyWater"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/colorWhite"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/back_arrow_blue"
+            android:onClick="goBackToHomeScreen"/>
+    </FrameLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="75"
+        android:layout_weight="85"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:paddingTop="10dp">
@@ -99,27 +116,6 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_regular"
                 android:text="@string/replay_explain_help_string"/>
-
-
         </LinearLayout>
-
     </ScrollView>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_weight="15">
-        <Button
-            android:background="@drawable/rounder_buttons"
-            android:id="@+id/return_home_button"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="@string/return_string"
-            android:onClick="goBackToHomeScreen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
-    </FrameLayout>
-
-
-
 </LinearLayout>
