@@ -18,42 +18,44 @@
             android:textSize="24sp"
             android:textColor="@color/colorWhite"
             android:fontFamily="@font/montserrat_bold"
-            android:text="@string/select_difficulty_string"
+            android:text=""
             android:gravity="center"/>
         <ImageView
             android:layout_width="100dp"
             android:layout_height="match_parent"
+            android:scaleType="fitStart"
             android:padding="15dp"
-            android:scaleType="fitCenter"
             android:src="@drawable/back_arrow_blue"
             android:onClick="goBackToHomeScreen"/>
     </FrameLayout>
-
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="70">
+        android:layout_weight="90"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_difficulty_string"
+            android:textSize="24dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/colorMurkyWater"/>
         <NumberPicker
+            android:layout_margin="50dp"
             android:id="@+id/difficulty_picker"
             android:theme="@style/NumberPickerText"
             android:descendantFocusability="blocksDescendants"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="15">
+            android:layout_height="wrap_content" />
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:background="@drawable/button"
             android:fontFamily="@font/montserrat_regular"
-            android:layout_gravity="center"
             android:text="@string/confirm_string"
             android:onClick="difficultyConfirmButtonClicked"/>
-    </FrameLayout>
+    </LinearLayout>
+
 
 </LinearLayout>

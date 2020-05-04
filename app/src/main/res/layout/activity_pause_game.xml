@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorMurkyWater"
+    android:gravity="center">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/options_string"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:layout_margin="15dp"
+        android:textColor="@color/colorWhite"
+        android:fontFamily="@font/montserrat_bold"/>
+    <Button
+        android:fontFamily="@font/montserrat_regular"
+        android:id="@+id/resume_button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/resume_string"
+        android:onClick="resumeButtonClicked"
+        android:background="@drawable/button"/>
+    <Button
+        android:fontFamily="@font/montserrat_regular"
+        android:id="@+id/change_difficulty_button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/change_difficulty_string"
+        android:onClick="goToDifficultyScreen"
+        android:background="@drawable/button"/>
+    <Button
+        android:fontFamily="@font/montserrat_regular"
+        android:id="@+id/quit_button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/quit_string"
+        android:onClick="goToHomeScreen"
+        android:background="@drawable/button"/>
+</LinearLayout>

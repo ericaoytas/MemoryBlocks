@@ -2,6 +2,7 @@ package com.example.memoryblocks;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,6 +30,7 @@ public class GamePlayActivity extends Activity {
     private List<Integer> pattern;      // list of ids representing the patter to be mimicked
     private int currentScore=0;         // current score value of the player (default: 0)
     private int savedHighScore=0;       // high score value saved in the system
+    private Object Intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -74,6 +76,7 @@ public class GamePlayActivity extends Activity {
     @Override
     protected void onPause() {
         // TODO: Add pause popup
+        saveHighScore();
         super.onPause();
     }
 
@@ -324,5 +327,10 @@ public class GamePlayActivity extends Activity {
     private int generateRandomIntIntRange(int min, int max) {
         Random r = new Random();
         return r.nextInt((max - min) + 1) + min;
+    }
+
+    public void optionsImageClicked(View view) {
+        Intent intent = new Intent(this, PauseActivity.class);
+        startActivity(intent);
     }
 }

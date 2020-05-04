@@ -46,5 +46,12 @@
         screen. If the player needs to see the pattern again, they may click this button
         to play it on the board again.
     </string>
+    <string name="options_string">OPTIONS</string>
+    <string name="change_difficulty_string">Change Difficulty</string>
+    <string name="quit_string">Quit</string>
+    <string name="resume_string">Resume</string>
+    <string name="options">Options</string>
+    <string name="difficulty_string">DIFFICULTY</string>
+    <string name="app_name_caps">MEMORY BLOCKS</string>
 
 </resources>
