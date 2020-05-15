@@ -1,42 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPeriwinkle"
-    android:weightSum="100">
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_weight="10">
-
-        <TextView
-            android:text="@string/help_string"
-            android:textSize="24sp"
-            android:paddingStart="15dp"
-            android:background="@color/colorMurkyWater"
-            android:fontFamily="@font/montserrat_bold"
-            android:textColor="@color/colorWhite"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"/>
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:padding="15dp"
-            android:scaleType="fitStart"
-            android:src="@drawable/back_arrow_blue"
-            android:onClick="goBackToHomeScreen"/>
-    </FrameLayout>
-
+    android:background="@color/colorPeriwinkle">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_weight="85"
+        android:layout_height="wrap_content"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:paddingTop="10dp">

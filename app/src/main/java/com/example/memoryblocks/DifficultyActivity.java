@@ -3,12 +3,17 @@ package com.example.memoryblocks;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.NumberPicker;
 
+import java.util.Objects;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-public class DifficultyActivity extends Activity {
+public class DifficultyActivity extends AppCompatActivity {
 
     NumberPicker mDifficultyPicker;
     String [] difficultyLevels;
@@ -24,6 +29,7 @@ public class DifficultyActivity extends Activity {
         mDifficultyPicker.setWrapSelectorWheel(false);
         mDifficultyPicker.setDisplayedValues(difficultyLevels);
         mDifficultyPicker.setValue(2);
+
     }
 
     /** Starts GamePlayActivity */

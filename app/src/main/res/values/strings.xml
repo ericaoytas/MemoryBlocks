@@ -53,5 +53,6 @@
     <string name="options">Options</string>
     <string name="difficulty_string">DIFFICULTY</string>
     <string name="app_name_caps">MEMORY BLOCKS</string>
+    <string name="back_string">Back</string>
 
 </resources>
