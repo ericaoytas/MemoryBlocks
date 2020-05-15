@@ -1,2 +1,5 @@
 # MemoryBlocks
- 
+
+Memory Blocks is a fun and interactive game that challenges and improves your visual memory. 
+
+Before playing, you have to set the difficulty of your game. The difficulty determines the size of your memory block grid. When the game starts, an n by n grid will appear on the screen. A pattern will be automatically displayed on the memory block grid as the blocks turn to the color blue. The first pattern will always start with one single, random block. Every time the player mimics the pattern correctly, one random block is added to the end of the pattern. The player must try to replicate the pattern that they observed by clicking on the correct blocks in the correct order. When the player pressed the correct block, the block will turn blue. Once a pattern is successfully replicated, points will be added to the player's score. If the player presses an incorrect block, the score will reset to zero, and a new pattern will be played. You cannot press a block while a pattern is showing. During the game, there will be "Replay Pattern" button found at the bottom of the screen. If the player needs to see the pattern again, they may click this button to play it on the board again. 
